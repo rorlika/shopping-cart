@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Product:</b>
+  <%= @price_rule.product.name %>
+</p>
+
+<p>
+  <b>Rule type:</b>
+  <%= @price_rule.rule_type %>
+</p>
+
+<p>
+  <b>Discount value:</b>
+  <%= @price_rule.discount_value %>
+</p>
+
+<p>
+  <b>Min quantity:</b>
+  <%= @price_rule.min_quantity %>
+</p>
+
+
+<%= link_to 'Edit', edit_product_price_rule_path(@price_rule.product, @price_rule) %> |
+<%= link_to 'Back', product_price_rules_path(@price_rule.product) %>

@@ -1,0 +1,29 @@
+<%= form_for([@price_rule.product, @price_rule]) do |f| %>
+  <% if @price_rule.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@price_rule.errors.count, "error") %> prohibited this price_rule from being saved:</h2>
+
+      <ul>
+      <% @price_rule.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :rule_type %><br />
+    <%= f.select :rule_type, PriceRule::RULE_TYPES %>
+  </div>
+  <div class="field">
+    <%= f.label :discount_value %><br />
+    <%= f.text_field :discount_value %>
+  </div>
+  <div class="field">
+    <%= f.label :min_quantity %><br />
+    <%= f.text_field :min_quantity %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
