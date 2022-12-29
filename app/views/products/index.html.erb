@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Products</h1>
+
+<div id="products">
+  <div class="card-group">
+    <% @products.each do |product| %>
+      <div class="col-md-4">
+        <%= render product %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= link_to "New product", new_product_path %>

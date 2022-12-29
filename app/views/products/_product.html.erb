@@ -1,0 +1,14 @@
+<div id="<%= dom_id product %>">
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title"><%= link_to product.name, product %></h5>
+      <h5 class="card-text"><%= product.product_code %></h5>
+      <h5 class="card-text"><%= number_to_euro(product.price) %></h5>
+      <%= form_with(url: carts_path, method: 'POST', format: :turbo_stream) do |f| %>
+        <%= f.hidden_field :product_id, value: product.id %>
+        <%= f.number_field :quantity, value: 0, min: 1 %>
+        <%= f.submit "Add To Cart", class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
