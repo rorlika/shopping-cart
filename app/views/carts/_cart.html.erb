@@ -1,0 +1,19 @@
+<%= turbo_frame_tag 'cart' do %>
+  <div class="p-5">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+      <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
+      <h6 class="mb-0 text-muted"><%= @cart.orders.count %> items</h6>
+    </div>
+    <hr class="my-4">
+              
+    <% if @cart.orders.count > 0 %>
+      <%= render partial: 'carts/orders' %>
+      <div class="d-flex ml-auto justify-content-between mb-5">
+        <h5 class="text-uppercase">Total price</h5>
+        <h5><%= number_to_euro(@cart.total) %></h5>
+      </div>
+    <% else %>
+      <p>Your cart is empty</p>
+    <% end %>
+  </div>
+<% end %>

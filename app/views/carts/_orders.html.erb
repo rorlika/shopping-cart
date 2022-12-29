@@ -1,0 +1,44 @@
+<section class="h-100 h-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12">
+        <% @cart.orders.each do |order| %>
+          <% product = order.product %>
+          <div id="<%= "cart-#{product.id}" %>">
+            <div class="card" style="border-radius: 15px;">
+              <div class="card-body">
+                <div class="row mb-4 d-flex justify-content-between align-items-center">
+                  <div class="col-md-3 col-lg-3 col-xl-3">
+                    <h6 class="text-muted"><%= product.name %></h6>
+                    <h6 class="text-black mb-0"><%= product.product_code %></h6>
+                  </div>
+
+                  <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                    <%= form_with(url: carts_path, method: 'POST') do |f| %>
+                      <div class="row">
+                        <%= f.hidden_field :product_id, value: product.id, class: 'col-md-1' %>
+                        <%= f.number_field :quantity, value: order.quantity, min: 0, class: 'col-md-6' %>
+                        <%= f.submit "+", class: 'btn btn-primary col-md-5' %>
+                      </div>
+                    <% end %>
+                  </div>
+
+                  <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                    <h6 class="mb-0"><%= number_to_euro(product.price) %></h6>
+                  </div>
+
+                  <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                    <%= form_with(url: carts_path, method: 'DELETE') do |f| %>
+                      <%= f.hidden_field :order_id, value: order.id %>
+                      <%= f.submit "X", class: 'btn btn-primary' %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
